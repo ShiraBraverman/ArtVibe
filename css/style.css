@@ -1,0 +1,454 @@
+/* Modern Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Custom Properties */
+:root {
+  --color-primary: #111111;
+  --color-accent: #c9a55c;
+  --color-bg: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: #999999;
+  --max-width: 1200px;
+  --spacing-lg: 2rem;
+  --spacing-md: 1rem;
+  --border-radius: 4px;
+}
+
+/* Base Styles */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: radial-gradient(
+      circle at 100% 50%,
+      rgba(201, 165, 92, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(201, 165, 92, 0.15) 0%,
+      transparent 50%
+    );
+}
+
+/* Header & Navigation */
+header {
+  background-color: rgba(17, 17, 17, 0.95);
+  padding: var(--spacing-md) 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: var(--spacing-lg);
+}
+
+nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+nav a:hover {
+  color: var(--color-accent);
+}
+
+/* Main Content */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+main svg {
+  width: 500px; /* הקטנה משמעותית */
+  height: 500px;
+  margin: 2rem auto;
+  display: block;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+  text-align: center;
+  position: relative;
+  padding-bottom: var(--spacing-md);
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+}
+
+p {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+/* Logo Styles */
+.home-logo {
+  width: 10px;
+  height: 10px;
+  margin: 2rem auto;
+  display: block;
+}
+
+/* Gallery Buttons */
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.gallery-btn {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  background: linear-gradient(
+    45deg,
+    var(--color-primary),
+    rgba(201, 165, 92, 0.1)
+  );
+  border: 2px solid var(--color-accent);
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(201, 165, 92, 0.1);
+}
+
+.gallery-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 165, 92, 0.2),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.gallery-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(201, 165, 92, 0.2);
+  background: linear-gradient(
+    45deg,
+    rgba(201, 165, 92, 0.2),
+    var(--color-primary)
+  );
+}
+
+.gallery-btn:hover::before {
+  left: 100%;
+}
+
+.gallery-btn:active {
+  transform: translateY(-1px);
+}
+
+/* עדכון המדיה קוורי */
+@media (max-width: 768px) {
+  .gallery-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-btn {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+/* Art Gallery Grid */
+.art-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.art-item {
+  background: var(--color-primary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.art-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(201, 165, 92, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.art-item:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.art-item:hover::before {
+  opacity: 1;
+}
+
+.art-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.art-item:hover img {
+  transform: scale(1.1);
+}
+
+.art-item p {
+  padding: var(--spacing-md);
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-text);
+  border-top: 1px solid rgba(201, 165, 92, 0.2);
+  background: linear-gradient(
+    to right,
+    var(--color-primary),
+    rgba(201, 165, 92, 0.1)
+  );
+}
+
+/* Contact Form */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(201, 165, 92, 0.2);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 165, 92, 0.2);
+  border-radius: var(--border-radius);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+button {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+button:hover {
+  background-color: #b18a3d;
+  transform: translateY(-2px);
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .gallery-links {
+    flex-direction: column;
+  }
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* About Page Styles */
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.about-section {
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.about-section h2 {
+  color: var(--color-accent);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.about-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.about-section p {
+  text-align: left;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-muted);
+}
+
+.highlight-text {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Delay each section's animation */
+.about-section:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.about-section:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.about-section:nth-child(4) {
+  animation-delay: 0.6s;
+}

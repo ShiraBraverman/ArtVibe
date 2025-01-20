@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArtVibe - Home</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <header>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./html/about.html">About Us</a></li>
+          <li><a href="./html/gallery.html">Gallery</a></li>
+          <li><a href="./html/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <h1>Welcome to ArtVibe</h1>
+      <p>Your gateway to unique, inspiring artwork by talented artists.</p>
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient
+            id="brushGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+            <stop offset="0%" style="stop-color: #c9a55c; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #dfc086; stop-opacity: 1" />
+          </linearGradient>
+        </defs>
+
+        <!-- Animated paint brush -->
+        <path
+          d="M50 20 L60 30 L55 70 L45 70 L40 30 Z"
+          fill="url(#brushGradient)"
+        >
+          <animate
+            attributeName="d"
+            dur="3s"
+            repeatCount="indefinite"
+            values="M50 20 L60 30 L55 70 L45 70 L40 30 Z;
+                           M50 20 L62 32 L57 72 L43 72 L38 32 Z;
+                           M50 20 L60 30 L55 70 L45 70 L40 30 Z"
+            calcMode="spline"
+            keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+          />
+        </path>
+
+        <!-- Animated paint drops -->
+        <circle cx="48" cy="75" r="1.5" fill="url(#brushGradient)">
+          <animate
+            attributeName="cy"
+            dur="2s"
+            values="75;80;75"
+            repeatCount="indefinite"
+            calcMode="spline"
+            keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+          />
+        </circle>
+
+        <!-- Soul/heart element -->
+        <path
+          d="M50 45 C50 40 45 35 40 35 C32 35 32 45 40 50 L50 60 L60 50 C68 45 68 35 60 35 C55 35 50 40 50 45"
+          fill="url(#brushGradient)"
+          opacity="0.6"
+        >
+          <animate
+            attributeName="opacity"
+            dur="2s"
+            values="0.6;0.9;0.6"
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+    </main>
+  </body>
+</html>
